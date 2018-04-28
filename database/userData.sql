@@ -1,0 +1,15 @@
+DROP DATABASE IF EXISTS user;
+CREATE DATABASE user;
+
+CREATE TABLE users(
+  id INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(30) NOT NULL,
+  userpassword VARCHAR(30) NOT NULL,
+  email VARCHAR(30) NOT NULL,
+  addressNumber INT NULL,
+  addressStreet VARCHAR (100) NULL,
+  city VARCHAR(25) NULL,
+  zip INT(5) NOT NULL,
+  phone INT(30) NULL,
+  PRIMARY KEY (id)
+);
