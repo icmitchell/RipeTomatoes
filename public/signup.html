@@ -56,15 +56,15 @@
                     <h2>Lets get started</h2>
                     <!-- form section "for", "name", and "value" attributes go in synch with passport.js and mysql table -->
                     <br>
-                    <form id="signup" name="signup" action="/signup" method="post">
+                    <form id="signup" name="signup" action="/api/user" method="post">
                         <br>
                         <br>
                         <label for="name">First Name (optional): </label>
-                        <input name="name" type="text" placeholder="Enter first name here"/>
+                        <input type="text" name="name" placeholder="Enter first name here"/>
                         <br>
                         <br>
-                        <label for="password">Email (required): </label>
-                        <input type="password" name="password" placeholder="Enter email here"/>
+                        <label for="email">Email (required): </label>
+                        <input type="text" name="email" placeholder="Enter email here"/>
                         <br>
                         <br>
                         <label for="username">Username (required): </label>
@@ -75,8 +75,8 @@
                         <input type="password" name="password" placeholder="Create password here"/>
                         <br>
                         <br>
-                        <label for="password">Phone Number (optional): </label>
-                        <input type="password" name="password" placeholder="Enter phone number here"/>
+                        <label for="phone">Phone Number (optional): </label>
+                        <input type="number" name="phone" placeholder="Enter phone number here"/>
                         <br>
                         <br>
                         <br>
