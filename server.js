@@ -7,10 +7,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var path = require("path");
 var app = express();
-
-var passportInit = require("./scripts/passport.js")
-var routes = require("./routes")
-
 var PORT = process.env.PORT || 8080;
 
 app.use(session({ 
@@ -23,15 +19,82 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('combined'));
-app.use(express.static(__dirname + '/public/assets'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-passportInit()
+var db = require("./models");
 
-app.use(routes);
+function loggedIn(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.status(403).send("Unauthorized")
+  }
+}
 
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+passport.use(new LocalStrategy(function(username, password, done) {
+  db.User.findOne(
+  {
+    where:
+    {'username': username}
+  }).then(function(user) {
+   bcrypt.compare(password, user.password, function(err, res) {
+    if (user == null) {
+      return done(null, false)
+    }
+    else if (res) {
+      return done(null, user)
+    }
+    return done(null, false)
+  })
+ })
+}))
+
+passport.serializeUser(function(user, done) { // Standered Serialize for session
+  done(null, user.id)
+})
+
+passport.deserializeUser(function(id, done) {
+  db.User.findOne({ 
+    where: {
+      'id': id
+    }
+  }).then(function (user) {
+    if (user == null) {
+      done(new Error('Wrong user id.'))
+    }
+    done(null, user) 
+  })
+})
+
+app.post("/api/user", function(req, res) {
+  db.User.create({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+    phone: req.body.phone,
+    name: req.body.name
+  }).then(function(dbUser) {
+    res.send(dbUser)
+  }).catch(function(err){
+    res.send(err)
+  });
+});
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "./newUser.html"));
+});
+
+app.post('/login', passport.authenticate('local', {failureRedirect: '/', successRedirect: '/dashboard'}))
+
+app.get("/dashboard", function(req, res) {
+  res.send("Logged In!");
+});
+
+
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  })
 });
