@@ -24,9 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// var db = require("./models");
-var db = require("./database/userData.js")
+// var User = require("./models");
+var User = require("./database/userData.js")
 
+mongoose.connect("mongodb://localhost/User");
 
 function loggedIn(req, res, next) {
   if (req.user) {
@@ -37,7 +38,7 @@ function loggedIn(req, res, next) {
 }
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  db.findOne({
+  User.findOne({
     'username': username
   }).then(function(user) {
    bcrypt.compare(password, user.password, function(err, res) {
@@ -57,7 +58,7 @@ passport.serializeUser(function(user, done) { // Standered Serialize for session
 })
 
 passport.deserializeUser(function(id, done) {
-  db.findOne({
+  User.findOne({
     '_id': id
   }).then(function (user) {
     if (user == null) {
@@ -68,17 +69,16 @@ passport.deserializeUser(function(id, done) {
 })
 
 app.post("/api/user", function(req, res) {
-  db.create({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    phone: req.body.phone,
-    name: req.body.name
-  }).then(function(dbUser) {
-    res.send(dbUser)
-  }).catch(function(err){
-    res.send(err)
-  });
+  console.log(req.body)
+  User.create(req.body)
+    .then(function(UserUser) {
+      // If saved successfully, send the the new User document to the client
+      res.json(UserUser);
+    })
+    .catch(function(err) {
+      // If an error occurs, send the error to the client
+      res.json(err);
+    });
 });
 
 app.get("/", function(req, res) {
@@ -91,9 +91,9 @@ app.get("/dashboard", function(req, res) {
   res.send("Logged In!");
 });
 
-mongoose.connect("mongodb://localhost/User");
 
-// db.sequelize.sync().then(function() {
+
+// User.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   })
