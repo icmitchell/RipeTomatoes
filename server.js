@@ -8,6 +8,7 @@ var bcrypt = require('bcrypt');
 var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 8080;
+var mongoose = require("mongoose");
 
 app.use(session({ 
   secret: 'secretKey',
@@ -23,7 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var db = require("./models");
+// var db = require("./models");
+var db = require("./database/userData.js")
+
 
 function loggedIn(req, res, next) {
   if (req.user) {
@@ -34,10 +37,8 @@ function loggedIn(req, res, next) {
 }
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  db.User.findOne(
-  {
-    where:
-    {'username': username}
+  db.findOne({
+    'username': username
   }).then(function(user) {
    bcrypt.compare(password, user.password, function(err, res) {
     if (user == null) {
@@ -56,10 +57,8 @@ passport.serializeUser(function(user, done) { // Standered Serialize for session
 })
 
 passport.deserializeUser(function(id, done) {
-  db.User.findOne({ 
-    where: {
-      'id': id
-    }
+  db.findOne({
+    '_id': id
   }).then(function (user) {
     if (user == null) {
       done(new Error('Wrong user id.'))
@@ -69,7 +68,7 @@ passport.deserializeUser(function(id, done) {
 })
 
 app.post("/api/user", function(req, res) {
-  db.User.create({
+  db.create({
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
@@ -92,9 +91,10 @@ app.get("/dashboard", function(req, res) {
   res.send("Logged In!");
 });
 
+mongoose.connect("mongodb://localhost/User");
 
-db.sequelize.sync().then(function() {
+// db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   })
-});
+
