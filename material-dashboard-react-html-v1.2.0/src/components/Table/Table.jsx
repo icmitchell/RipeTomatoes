@@ -7,13 +7,15 @@ import {
   TableBody,
   TableCell
 } from "material-ui";
-
+import watchListApi from "../../utils/watchListApi"
 import PropTypes from "prop-types";
 
 import tableStyle from "assets/jss/material-dashboard-react/tableStyle";
 
 function CustomTable({ ...props }) {
-  const { classes, tableHead, tableData, tableHeaderColor } = props;
+  const { classes, tableHead, tableHeaderColor } = props;
+  // var tableData = watchListApi.getWatchList()
+  var tableData = [['go away'],['real tho']]
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>

@@ -1,3 +1,3 @@
 const args = ["run build"];
-const opts = { stdio: "inherit", cwd: "client", shell: true };
+const opts = { stdio: "inherit", cwd: "material-dashboard-react-html-v1.2.0", shell: true };
 require("child_process").spawn("npm", args, opts);
