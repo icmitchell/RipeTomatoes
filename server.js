@@ -71,11 +71,11 @@ passport.deserializeUser(function(id, done) {
 app.post("/api/user", function(req, res) {
   console.log(req.body)
   User.create(req.body)
-    .then(function(UserUser) {
+  .then(function(UserUser) {
       // If saved successfully, send the the new User document to the client
       res.json(UserUser);
     })
-    .catch(function(err) {
+  .catch(function(err) {
       // If an error occurs, send the error to the client
       res.json(err);
     });
@@ -87,7 +87,8 @@ app.get("/", function(req, res) {
 
 app.post('/login', passport.authenticate('local', {failureRedirect: '/', successRedirect: '/dashboard'}))
 
-app.get("/dashboard", function(req, res) {
+app.get("/dashboard", loggedIn, function(req, res) {
+  console.log(req.user)
   res.send("Logged In!");
 });
 
