@@ -11,9 +11,9 @@ import {
 } from "material-ui";
 // import { BugReport, Code, Cloud } from "@material-ui/icons";
 
-import { Tasks } from "components";
+import watchListApi from "../../utils/watchListApi"
 
-import { bugs, website, server } from "variables/general";
+import { Tasks } from "components";
 
 import tasksCardStyle from "assets/jss/material-dashboard-react/tasksCardStyle";
 
@@ -24,7 +24,22 @@ class TasksCard extends React.Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
   render() {
+    var watchList = watchListApi.getWatchList()
+
+    watchList = [{'title': 'hi'}, {'title': 'hello'}]
+
+    var indexArray = []
+    var movieArray = watchList.map((currentValue, index) => {
+      indexArray.push(index)
+      return (currentValue.title)
+    })
+
+
+
+
+
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
@@ -35,74 +50,15 @@ class TasksCard extends React.Component {
             content: classes.cardHeaderContent
           }}
           title="Watchlist:"
-          /* action={
-            <Tabs
-              classes={{
-                flexContainer: classes.tabsContainer,
-                indicator: classes.displayNone
-              }}
-              value={this.state.value}
-              onChange={this.handleChange}
-              textColor="inherit"
-            >
-              <Tab
-                classes={{
-                  wrapper: classes.tabWrapper,
-                  labelIcon: classes.labelIcon,
-                  label: classes.label,
-                  textColorInheritSelected: classes.textColorInheritSelected
-                }}
-                icon={<BugReport className={classes.tabIcon} />}
-                label={"Bugs"}
-              />
-              <Tab
-                classes={{
-                  wrapper: classes.tabWrapper,
-                  labelIcon: classes.labelIcon,
-                  label: classes.label,
-                  textColorInheritSelected: classes.textColorInheritSelected
-                }}
-                icon={<Code className={classes.tabIcon} />}
-                label={"Website"}
-              />
-              <Tab
-                classes={{
-                  wrapper: classes.tabWrapper,
-                  labelIcon: classes.labelIcon,
-                  label: classes.label,
-                  textColorInheritSelected: classes.textColorInheritSelected
-                }}
-                icon={<Cloud className={classes.tabIcon} />}
-                label={"Server"}
-              />
-            </Tabs>
-          } */
+       
         />
         <CardContent>
           {this.state.value === 0 && (
             <Typography component="div">
               <Tasks
                 checkedIndexes={[0, 3]}
-                tasksIndexes={[0, 1, 2, 3]}
-                tasks={bugs}
-              />
-            </Typography>
-          )}
-          {this.state.value === 1 && (
-            <Typography component="div">
-              <Tasks
-                checkedIndexes={[0]}
-                tasksIndexes={[0, 1]}
-                tasks={website}
-              />
-            </Typography>
-          )}
-          {this.state.value === 2 && (
-            <Typography component="div">
-              <Tasks
-                checkedIndexes={[1]}
-                tasksIndexes={[0, 1, 2]}
-                tasks={server}
+                tasksIndexes={indexArray}
+                tasks={movieArray}
               />
             </Typography>
           )}
