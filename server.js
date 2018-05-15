@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var path = require("path");
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 var mongoose = require("mongoose");
 
 app.use(session({ 
