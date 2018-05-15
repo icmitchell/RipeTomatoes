@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var path = require("path");
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 var mongoose = require("mongoose");
 
 app.use(session({ 
@@ -23,7 +23,7 @@ app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+app.use(express.static(__dirname + '/public'));
 // var User = require("./models");
 var User = require("./database/userData.js")
 
@@ -68,33 +68,18 @@ passport.deserializeUser(function(id, done) {
   })
 })
 
-app.post("/api/user", function(req, res) {
-  console.log(req.body)
-  User.create(req.body)
-  .then(function(UserUser) {
-      // If saved successfully, send the the new User document to the client
-      res.json(UserUser);
-    })
-  .catch(function(err) {
-      // If an error occurs, send the error to the client
-      res.json(err);
-    });
-});
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "./newUser.html"));
-});
-
-app.post('/login', passport.authenticate('local', {failureRedirect: '/', successRedirect: '/dashboard'}))
-
-app.get("/dashboard", loggedIn, function(req, res) {
-  console.log(req.user)
-  res.send("Logged In!");
-});
+require("./routes/htmlRoutes.js")(app);
+require("./routes/apiRoutes.js")(app);
+require("./routes/passportRoutes.js")(app);
 
 
+// app.get("/dashboard", loggedIn, function(req, res) {
+//   console.log(req.user)
+//   res.send("Logged In!");
+// });
 
-// User.sequelize.sync().then(function() {
+
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   })

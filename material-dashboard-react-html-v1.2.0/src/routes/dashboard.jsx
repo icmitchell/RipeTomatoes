@@ -37,7 +37,7 @@ const dashboardRoutes = [
     navbarName: "Movie List",
     icon: ContentPaste,
     component: TableList
-  },
+  }
   // {
   //   path: "/typography",
   //   sidebarName: "Typography",
@@ -66,7 +66,7 @@ const dashboardRoutes = [
   //   icon: Notifications,
   //   component: NotificationsPage
   // },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  // { redirect: true, path: "/dashboard", to: "/dashboard", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;
