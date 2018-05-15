@@ -5,31 +5,39 @@ $(document).ready(function(){
         
         switch(choice) {
             case "Directors":
-            $(".a1").append(" <b>Name your 3 favorite directors in the fields below</b>.");
-            $(".secondChoice").append([
-                $('<input>', {type: 'text',val: $('#div1').text()}),
-                $('<input>', {type: 'text',val: $('#div1').text()}),
-                $('<input>', {type: 'text',val: $('#div1').text()})
+            $(".a1").html(" <b>Name your 3 favorite directors in the fields below</b>.");
+            $(".secondChoice").html([
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director1"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director2"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director3"})
             ]);
             break;
             case "Actors":
-            $(".a1").append(" <b>Name your 3 favorite directors in the fields below</b>.");
-            $(".secondChoice").append([
-                $('<input>', {type: 'text',val: $('#div1').text()}),
-                $('<input>', {type: 'text',val: $('#div1').text()}),
-                $('<input>', {type: 'text',val: $('#div1').text()})
+            $(".a1").html(" <b>Name your 3 favorite actors in the fields below</b>.");
+            $(".secondChoice").html([
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor1"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor2"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor3"})
             ]);
             break;
             case "Awards":
+            $(".a1").empty();
+            $(".secondChoice").empty();
             break;
             
             case "Critics Ratings":
+            $(".a1").empty();
+            $(".secondChoice").empty();
             break;
             
             case "Box Office":
+            $(".a1").empty();
+            $(".secondChoice").empty();
             break;
             
             case "Release Date":
+            $(".a1").empty();
+            $(".secondChoice").empty();
             break;
             console.log(choice);
         }   
@@ -45,31 +53,39 @@ $(document).ready(function(){
         
         switch(choice2) {
             case "Directors":
-            $(".a2").append(" <b>Name your 3 favorite directors in the fields below</b>.");
-            $(".secondChoice2").append([
-                $('<input>', {type: 'text',val: $('#div2').text()}),
-                $('<input>', {type: 'text',val: $('#div2').text()}),
-                $('<input>', {type: 'text',val: $('#div2').text()})
+            $(".a2").html(" <b>Name your 3 favorite directors in the fields below</b>.");
+            $(".secondChoice2").html([
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director1"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director2"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director3"})
             ]);
             break;
             case "Actors":
-            $(".a2").append(" <b>Name your 3 favorite directors in the fields below</b>.");
-            $(".secondChoice2").append([
-                $('<input>', {type: 'text',val: $('#div2').text()}),
-                $('<input>', {type: 'text',val: $('#div2').text()}),
-                $('<input>', {type: 'text',val: $('#div2').text()})
+            $(".a2").html(" <b>Name your 3 favorite actors in the fields below</b>.");
+            $(".secondChoice2").html([
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor1"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor2"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor3"})
             ]);
             break;
             case "Awards":
+            $(".a2").empty();
+            $(".secondChoice2").empty();
             break;
             
             case "Critics Ratings":
+            $(".a2").empty();
+            $(".secondChoice2").empty();
             break;
             
             case "Box Office":
+            $(".a2").empty();
+            $(".secondChoice2").empty();
             break;
             
             case "Release Date":
+            $(".a2").empty();
+            $(".secondChoice2").empty();
             break;
             console.log(choice2);
         }   
@@ -84,31 +100,39 @@ $(document).ready(function(){
         
         switch(choice3) {
             case "Directors":
-            $(".a3").append(" <b>Name your 3 favorite directors in the fields below</b>.");
-            $(".secondChoice3").append([
-                $('<input>', {type: 'text',val: $('#div3').text()}),
-                $('<input>', {type: 'text',val: $('#div3').text()}),
-                $('<input>', {type: 'text',val: $('#div3').text()})
+            $(".a3").html(" <b>Name your 3 favorite directors in the fields below</b>.");
+            $(".secondChoice3").html([
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director1"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director2"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"director3"})
             ]);
             break;
             case "Actors":
-            $(".a3").append(" <b>Name your 3 favorite directors in the fields below</b>.");
-            $(".secondChoice3").append([
-                $('<input>', {type: 'text',val: $('#div3').text()}),
-                $('<input>', {type: 'text',val: $('#div3').text()}),
-                $('<input>', {type: 'text',val: $('#div3').text()})
+            $(".a3").html(" <b>Name your 3 favorite actors in the fields below</b>.");
+            $(".secondChoice3").html([
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor1"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor2"}),
+                $('<input>', {type: 'text',val: $('#div1').text(),id:"actor3"})
             ]);
             break;
             case "Awards":
+            $(".a3").empty();
+            $(".secondChoice3").empty();
             break;
             
             case "Critics Ratings":
+            $(".a3").empty();
+            $(".secondChoice3").empty();
             break;
             
             case "Box Office":
+            $(".a3").empty();
+            $(".secondChoice3").empty();
             break;
             
             case "Release Date":
+            $(".a3").empty();
+            $(".secondChoice3").empty();
             break;
             console.log(choice);
         }   
