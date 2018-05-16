@@ -27,6 +27,8 @@ app.use(express.static(__dirname + '/public'));
 // var User = require("./models");
 var User = require("./database/userData.js")
 
+app.use(express.static(path.join(__dirname, 'material-dashboard-react-html-v1.2.0/build')));
+
 mongoose.connect("mongodb://Admin:pass@ds235788.mlab.com:35788/heroku_xcbthczk");
 
 function loggedIn(req, res, next) {
