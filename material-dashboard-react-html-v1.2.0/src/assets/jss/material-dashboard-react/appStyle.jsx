@@ -26,7 +26,7 @@ const appStyle = theme => ({
     marginTop: "70px",
     padding: "30px 15px",
     minHeight: "calc(100% - 123px)",
-    backgroundColor: "#5f8da2"
+    backgroundColor: "#060606"
   },
   container,
   map: {

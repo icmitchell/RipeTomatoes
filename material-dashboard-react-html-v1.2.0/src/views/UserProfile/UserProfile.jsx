@@ -9,7 +9,7 @@ import {
   ItemGrid
 } from "components";
 
-import avatar from "assets/img/faces/film.png";
+import avatar from "assets/img/faces/film7.png";
 
 function UserProfile({ ...props }) {
   return (
@@ -99,8 +99,8 @@ function UserProfile({ ...props }) {
           <ProfileCard
             avatar={avatar}
             subtitle="CEO"
-            title="Brad Pitt"
-            description="There is no pact between lions and men - Achilles"
+            title="Mr. Ripe"
+            description="Do you like tomatoes?"
             footer={
               <Button color="primary" round>
                 Follow
