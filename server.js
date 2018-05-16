@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var path = require("path");
 var app = express();
-var PORT = 3001;
+var PORT = process.env.PORT || 5000;
 var mongoose = require("mongoose");
 
 app.use(session({ 
@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/public'));
 // var User = require("./models");
 var User = require("./database/userData.js")
 
-mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds235788.mlab.com:35788/heroku_xcbthczk");
+mongoose.connect("mongodb://Admin:pass@ds235788.mlab.com:35788/heroku_xcbthczk");
 
 function loggedIn(req, res, next) {
   if (req.user) {
@@ -73,6 +73,9 @@ require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 require("./routes/passportRoutes.js")(app);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/material-dashboard-react-html-v1.2.0/build/index.html'));
+});
 
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
