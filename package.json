@@ -4,7 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
     "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn",
     "heroku-postbuild": "cd material-dashboard-react-html-v1.2.0 && yarn --production=false && yarn run build"
   },
   "author": "",
