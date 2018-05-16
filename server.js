@@ -74,12 +74,6 @@ require("./routes/apiRoutes.js")(app);
 require("./routes/passportRoutes.js")(app);
 
 
-// app.get("/dashboard", loggedIn, function(req, res) {
-//   console.log(req.user)
-//   res.send("Logged In!");
-// });
-
-
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   })

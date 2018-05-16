@@ -2,27 +2,38 @@ const User = require("../database/userData.js")
 
 
 module.exports = {
-  findByUsername: function(req, res) {
-   User.findOne({
-    'username': req.body.username
+findById: function(req, res) {
+  User.findOne({
+   '_id': req.body._id
   })
-   .then(dbModel => res.json(dbModel))
-   .catch(err => res.status(422).json(err))
- },
- create: function(req, res) {
-  User.create(req.body)
-  .then(dbModel => res.json(dbModel))
+  .then(dbModel => res.json(dbModel.watch_list))
+  .catch(err => res.status(422).json(err))
+  },
+  
+addMovie: function(req, res) {
+  User.update(
+    { _id: req.body.id },
+    { $push: { watch_list: req.body.movie } }
+ ).then(dbModel => res.json(dbModel.watch_list))
   .catch(err => res.status(422).json(err))
 },
-update: function(req, res) {
-  User.findOneAndUpdate({ _id: req.user._id }, req.body)
-  .then(dbModel => res.json(dbModel))
+
+editMovie: function(req, res) {
+  User.update(
+    { _id: req.body.id },
+    { $pull: { watch_list: req.body.movie.title } }
+  ).then(User.update(
+    { _id: req.body.id },
+    { $push: { watch_list: req.body.movie } }
+ )).then(dbModel => res.json(dbModel.watch_list))
   .catch(err => res.status(422).json(err));
 },
-remove: function(req, res) {
-  User.findById({ _id: req.user._id })
-  .then(dbModel => dbModel.remove())
-  .then(dbModel => res.json(dbModel))
+
+removeMovie: function(req, res) {
+  User.update(
+    { _id: req.body.id },
+    { $pull: { watch_list: req.body.movie } }
+  ).then(dbModel => res.json(dbModel.watch_list))
   .catch(err => res.status(422).json(err));
 }
 };
