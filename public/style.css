@@ -1,0 +1,7 @@
+p {
+    color:red
+}
+
+#choice1, #choice2, #choice3 {
+    width: 300px;
+}
