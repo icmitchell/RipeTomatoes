@@ -118,12 +118,12 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #9c27b0;
+    color: #d6221c;
     text-decoration: none;
 }
 
 a:hover, a:focus {
-    color: #89229b;
+    color: #d6221c;
     text-decoration: none;
 }
 
@@ -197,6 +197,7 @@ footer ul li a {
 
 footer ul li a:hover {
     text-decoration: none;
+    color: #d6221c;
 }
 
 @media (max-width: 991px) {
