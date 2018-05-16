@@ -1,6 +1,0 @@
-{
-  "ignore": [
-    "client/*",
-    "material-dashboard-react-html-v1.2.0/*"
-  ]
-}
