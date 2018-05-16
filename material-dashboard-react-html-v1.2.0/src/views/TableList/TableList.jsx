@@ -11,8 +11,8 @@ function TableList({ ...props }) {
     <Grid container>
       <ItemGrid xs={12} sm={12} md={12}>
         <RegularCard
-          cardTitle="Simple Table"
-          cardSubtitle="Here is a subtitle for this table"
+          cardTitle="Search Results"
+          cardSubtitle="Here are your movie search results"
           content={
             <Table
               tableHeaderColor="primary"
@@ -21,20 +21,7 @@ function TableList({ ...props }) {
           }
         />
       </ItemGrid>
-      <ItemGrid xs={12} sm={12} md={12}>
-        <RegularCard
-          plainCard
-          cardTitle="Table on Plain Background"
-          cardSubtitle="Here is a subtitle for this table"
-          content={
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["ID", "Name", "Country", "City", "Salary"]}
-              
-            />
-          }
-        />
-      </ItemGrid>
+      
     </Grid>
   );
 }
