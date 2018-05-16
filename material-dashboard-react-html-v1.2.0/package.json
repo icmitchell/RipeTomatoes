@@ -4,7 +4,7 @@
   "description": "Material Dashboard React. Coded by Creative Tim",
   "private": false,
   "main": "index.js",
-  "proxy": "http://localhost:8080/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@material-ui/icons": "1.0.0-beta.42",
     "chartist": "0.10.1",

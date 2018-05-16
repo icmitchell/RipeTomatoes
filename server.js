@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var path = require("path");
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = 3001;
 var mongoose = require("mongoose");
 
 app.use(session({ 
@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/public'));
 // var User = require("./models");
 var User = require("./database/userData.js")
 
-mongoose.connect("mongodb://<Admin>:<pass>@ds235788.mlab.com:35788/heroku_xcbthczk");
+mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds235788.mlab.com:35788/heroku_xcbthczk");
 
 function loggedIn(req, res, next) {
   if (req.user) {

@@ -6,11 +6,10 @@
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
-    "build": "node scripts/build.js",
-    "heroku-postbuild": "cd material-dashboard-react-html-v1.2.0 && yarn --production=false && yarn run build",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn"
+    "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn",
+    "heroku-postbuild": "cd material-dashboard-react-html-v1.2.0 && yarn --production=false && yarn run build"
   },
   "author": "",
   "license": "ISC",
