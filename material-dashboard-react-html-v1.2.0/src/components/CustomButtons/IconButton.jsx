@@ -14,6 +14,7 @@ function IconCustomButton({ ...props }) {
         (color ? " " + classes[color] : "") +
         (customClass ? " " + customClass : "")
       }
+      
     >
       {children}
     </IconButton>

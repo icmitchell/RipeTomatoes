@@ -30,6 +30,8 @@ function CustomInput({ ...props }) {
   const marginTop = cx({
     [classes.marginTop]: labelText === undefined
   });
+
+
   return (
     <FormControl
       {...formControlProps}
@@ -44,12 +46,13 @@ function CustomInput({ ...props }) {
           {labelText}
         </InputLabel>
       ) : null}
-      <Input
+      <Input 
         classes={{
           root: marginTop,
           disabled: classes.disabled,
           underline: underlineClasses,
         }}
+        
         id={id}
         {...inputProps}
       />
