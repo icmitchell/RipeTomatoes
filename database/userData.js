@@ -82,10 +82,10 @@ var UserSchema = new Schema({
     // },
     
     watch_list: [{
-        title : {type: String, required: true},
+        title : {type: String, required: false},
         releaseYear : Number,
         required: false
-    }],
+    }]
     
     
 });
