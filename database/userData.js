@@ -37,38 +37,49 @@ var UserSchema = new Schema({
         trim: true,
         required: "Not required"
     },
-    
-    director: [
-        {type: String}
-    ],
-    actor: [
-        {type: String}
-    ],
-    
-    critics_rating: {
-        type: Boolean,
-        required: false 
+
+    preference1: {
+        type: Object
     },
-    
-    peers_rating: {
-        type: Boolean,
-        required: false 
+
+    preference2: {
+        type: Object
     },
-    
-    awards: {
-        type: Boolean,
-        default: false
+
+    preference3: {
+        type: Object
     },
+    // director: [
+    //     {type: String}
+    // ],
+    // actor: [
+    //     {type: String}
+    // ],
     
-    box_office_success: {
-        type: Boolean,
-        required: false 
-    },
+    // critics_rating: {
+    //     type: Boolean,
+    //     required: false 
+    // },
     
-    release_date: { 
-        type: String,
-        required: false
-    },
+    // peers_rating: {
+    //     type: Boolean,
+    //     required: false 
+    // },
+    
+    // awards: {
+    //     type: Boolean,
+    //     default: false
+    // },
+    
+    // box_office_success: {
+    //     type: Boolean,
+    //     required: false 
+    // },
+    
+    // release_date: { 
+    //     type: String,
+    //     required: false
+    // },
     
     watch_list: [{
         title : {type: String, required: true},
