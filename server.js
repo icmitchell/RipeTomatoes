@@ -17,6 +17,12 @@ app.use(session({
   cookie: { maxAge: 100 * 60 * 60 * 24 * 30}
 }));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(morgan('combined'));
