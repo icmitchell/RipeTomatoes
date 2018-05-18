@@ -2,27 +2,27 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
+    <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div className="container">
+        <div className="navbar-header">
           <button
             type="button"
-            class="navbar-toggle"
+            className="navbar-toggle"
             data-toggle="collapse"
             data-target="#bs-example-navbar-collapse-1"
           >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar" />
-            <span class="icon-bar" />
-            <span class="icon-bar" />
+            <span className="sr-only">Toggle navigation</span>
+            <span className="icon-bar" />
+            <span className="icon-bar" />
+            <span className="icon-bar" />
           </button>
-          <a class="navbar-brand" href="#">
+          <a className="navbar-brand" href="#">
             Ripe Tomatoes
           </a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="form-inline">
-            <ul class="nav navbar-nav navbar-right bdr">
+        <div id="navbar" className="navbar-collapse collapse">
+          <form className="form-inline">
+            <ul className="nav navbar-nav navbar-right bdr">
               <li>
                 <a href="#" data-toggle="modal" data-target="#at-login">
                   Sign in
