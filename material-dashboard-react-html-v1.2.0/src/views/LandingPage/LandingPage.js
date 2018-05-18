@@ -1,11 +1,75 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
+import { Redirect } from "react-router-dom";
+
 import "../LandingPage/LandingPage.css";
 
 export default class LandingPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loginConfirm: undefined,
+      signupConfirm: undefined
+    };
   }
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSignup = () => {
+    var data = {
+      firstName: this.state.firstName,
+      phNum: this.state.phNum,
+      email: this.state.email,
+      password: this.state.password,
+      userName: this.state.userName
+    };
+    fetch("/api/user/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server.");
+        }
+        return response.json();
+      })
+
+      .catch(err => {
+        console.log("Error: " + err);
+      });
+  };
+
+  handleLogin = () => {
+    var data = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server.");
+        }
+        return <Redirect to="/dashboard" />;
+      })
+      .catch(err => {
+        console.log("Error: " + err);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -39,6 +103,7 @@ export default class LandingPage extends React.Component {
                   <form>
                     <div className="form-group">
                       <input
+                        onChange={this.handleChange}
                         type="email"
                         className="form-control-form "
                         id="exampleInputEmaillog"
@@ -47,6 +112,7 @@ export default class LandingPage extends React.Component {
                     </div>
                     <div className="form-group">
                       <input
+                        onChange={this.handleChange}
                         type="password"
                         className="form-control-form "
                         id="exampleInputPasswordpas"
@@ -63,7 +129,11 @@ export default class LandingPage extends React.Component {
                       </div>
                       <div className="col-md-4 col-md-offset-2" />
                     </div>
-                    <button type="submit" className="btn-lgin">
+                    <button
+                      onClick={this.handleLogin}
+                      type="submit"
+                      className="btn-lgin"
+                    >
                       Login
                     </button>
                   </form>
@@ -118,25 +188,31 @@ export default class LandingPage extends React.Component {
                   <form>
                     <div className="form-group">
                       <input
+                        onChange={this.handleChange}
                         type="text"
                         className="form-control-form "
                         id="exampleInputNamelog"
+                        name="firstName"
                         placeholder="First Name(optional)"
                       />
                     </div>
                     <div className="form-group">
                       <input
+                        onChange={this.handleChange}
                         type="email"
                         className="form-control-form "
                         id="exampleInputEmaillog"
+                        name="email"
                         placeholder="Email(required)"
                       />
                     </div>
                     <div className="form-group">
                       <input
+                        onChange={this.handleChange}
                         type="text"
                         className="form-control-form "
                         id="exampleInputNamelog"
+                        name="userName"
                         placeholder="Username(required)"
                       />
                     </div>
@@ -145,18 +221,25 @@ export default class LandingPage extends React.Component {
                         type="password"
                         className="form-control-form "
                         id="exampleInputPasswordpas"
+                        name="password"
                         placeholder="Password(required)"
                       />
                     </div>
                     <div className="form-group">
                       <input
+                        onChange={this.handleChange}
                         type="text"
                         className="form-control-form "
                         id="exampleInputNamelog"
+                        name="phNum"
                         placeholder="Phone Number(optional)"
                       />
                     </div>
-                    <button type="submit" className="btn-lgin">
+                    <button
+                      onClick={this.handleSignup}
+                      type="submit"
+                      className="btn-lgin"
+                    >
                       Signup
                     </button>
                   </form>
