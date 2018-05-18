@@ -4,26 +4,28 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn",
-    "heroku-postbuild": "cd material-dashboard-react-html-v1.2.0 && yarn --production=false && yarn run build"
+    "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^3.5.0",
+    "concurrently": "^3.5.1",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
     "axios": "^0.16.2",
     "bcrypt": "^2.0.1",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "mongod": "^2.0.0",
     "mongodb": "^3.0.8",
-    "mongoose": "^5.1.1",
+    "mongoose": "^5.1.0",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

@@ -80,7 +80,13 @@ import Danger from "./Typography/Danger.jsx";
 import Small from "./Typography/Small.jsx";
 import A from "./Typography/A.jsx";
 
+// ##############################
+// // // Landing Page
+// #############################
+import LandingPage from "../views/LandingPage/LandingPage";
 export {
+  //Landing Page
+  LandingPage,
   // Cards
   ChartCard,
   ProfileCard,
