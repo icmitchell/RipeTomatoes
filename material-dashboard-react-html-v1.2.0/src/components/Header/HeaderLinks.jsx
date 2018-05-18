@@ -38,7 +38,7 @@ class HeaderLinks extends React.Component {
       })
   };
 
-  changeQuery = (e) => {
+  onChangeQuery = (e) => {
    var query = e.target.value
    this.setState({
     query: query
@@ -60,7 +60,7 @@ class HeaderLinks extends React.Component {
       inputProps={{
         placeholder: "Search",
         inputProps: {
-          onChange: this.changeQuery,
+          onChange: this.onChangeQuery,
           "aria-label": "Search"
         }
       }}

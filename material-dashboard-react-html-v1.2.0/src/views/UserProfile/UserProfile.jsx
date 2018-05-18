@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, InputLabel } from "material-ui";
-
+import searchTermApi from "../../utils/searchTermApi"
 import {
   ProfileCard,
   RegularCard,
@@ -12,6 +12,8 @@ import {
 import avatar from "assets/img/faces/film7.png";
 
 function UserProfile({ ...props }) {
+var user = searchTermApi.getUser
+console.log(user())
   return (
     <div>
       <Grid container>
