@@ -36,7 +36,7 @@ class HeaderLinks extends React.Component {
           console.log(result.data)
        })
       })
-  }
+  };
 
   changeQuery = (e) => {
    var query = e.target.value
