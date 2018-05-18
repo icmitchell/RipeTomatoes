@@ -23,7 +23,8 @@ export default class LandingPage extends React.Component {
       phNum: this.state.phNum,
       email: this.state.email,
       password: this.state.password,
-      userName: this.state.userName
+      userName: this.state.userName,
+      top5: this.state.top5
     };
     fetch("/api/user/add", {
       method: "POST",
@@ -189,16 +190,6 @@ export default class LandingPage extends React.Component {
                     <div className="form-group">
                       <input
                         onChange={this.handleChange}
-                        type="text"
-                        className="form-control-form "
-                        id="exampleInputNamelog"
-                        name="firstName"
-                        placeholder="First Name(optional)"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <input
-                        onChange={this.handleChange}
                         type="email"
                         className="form-control-form "
                         id="exampleInputEmaillog"
@@ -231,10 +222,31 @@ export default class LandingPage extends React.Component {
                         type="text"
                         className="form-control-form "
                         id="exampleInputNamelog"
-                        name="phNum"
-                        placeholder="Phone Number(optional)"
+                        name="movie1"
+                        placeholder="1st Favorite Movie"
                       />
                     </div>
+                    <div className="form-group">
+                      <input
+                        onChange={this.handleChange}
+                        type="text"
+                        className="form-control-form "
+                        id="exampleInputNamelog"
+                        name="movie2"
+                        placeholder="2nd Favorite Movie"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        onChange={this.handleChange}
+                        type="text"
+                        className="form-control-form "
+                        id="exampleInputNamelog"
+                        name="movie3"
+                        placeholder="3rd Favorite Movie"
+                      />
+                    </div>
+
                     <button
                       onClick={this.handleSignup}
                       type="submit"
