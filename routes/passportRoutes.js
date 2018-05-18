@@ -7,11 +7,11 @@ var app = express();
 module.exports = function(app) {
 
 
-	app.post('/login', passport.authenticate('local', {failureRedirect: '/', successRedirect: '/dashboard'}))
+	// app.post('/login', passport.authenticate('local', {failureRedirect: '/', successRedirect: '/dashboard'}))
 
-	app.get('/logout',(req,res)=>{
-		req.logout();
-		res.redirect('/');
-	})
+	// app.get('/logout',(req,res)=>{
+	// 	req.logout();
+	// 	res.redirect('/');
+	// })
 }
  

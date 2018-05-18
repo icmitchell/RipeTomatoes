@@ -32,15 +32,8 @@ module.exports = function(app) {
 	// 	res.sendFile(path.join(__dirname, "../public/survey.html"));
 	// });
 
-	app.get("/dashboard", function(req, res) {
-		res.sendFile(path.join(__dirname, "../material-dashboard-react-html-v1.2.0/public/index.html"));
-	})
-	app.get("/", function(req, res) {
-		res.redirect(''); //redirect to Ripe-Tomatoes2
-	});
+
+
 	
-	app.get("/survey", function(req, res) {
-		res.redirect(''); //redirect to Ripe-Tomatoes2
-	});
 
 };
