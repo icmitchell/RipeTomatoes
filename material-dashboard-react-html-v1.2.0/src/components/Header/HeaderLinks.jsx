@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Manager, Target, Popper } from "react-popper";
+import { Route, Redirect } from 'react-router-dom'
 import axios from 'axios';
 import {
   withStyles,
@@ -21,7 +22,9 @@ import headerLinksStyle from "assets/jss/material-dashboard-react/headerLinksSty
 class HeaderLinks extends React.Component {
   state = {
     open: false,
-    query: ''
+    query: '',
+    redirect: false,
+    movieData: []
   };
   handleClick = () => {
     this.setState({ open: !this.state.open });
@@ -33,7 +36,10 @@ class HeaderLinks extends React.Component {
         console.log(res)
        axios.get("https://api.themoviedb.org/3/discover/movie?api_key=2d2687b13c2d438d213417aea67f58a0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_keywords="+res.data.results[0].id) 
         .then(result => {
-          console.log(result.data)
+          this.setState({movieData: result.data.results})
+          return(<Redirect movieData={this.state.movieData} to="/table" />)
+          
+          console.log(this.state.movieData)
        })
       })
   };

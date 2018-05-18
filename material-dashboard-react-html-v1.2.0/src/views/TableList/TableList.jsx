@@ -5,8 +5,7 @@ import { RegularCard, Table, ItemGrid } from "components";
 
 function TableList({ ...props }) {
 
-// var watchList = WatchListApi.getWatchList()
-
+console.log(props.movieData)
   return (
     <Grid container>
       <ItemGrid xs={12} sm={12} md={12}>
