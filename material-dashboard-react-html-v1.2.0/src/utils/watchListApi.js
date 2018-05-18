@@ -1,20 +1,16 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
   getWatchList: function() {
-    return axios.get("/api/watchlist");
+    return axios.get("/api/watchlist/view");
   },
-  // Gets the book with the given id
-  getMovie: function(id) {
-    return axios.get("/api/watchlist/" + id);
+  addMovie: function(movieData) {
+    return axios.post("/api/watchlist/add", movieData);
   },
-  // Deletes the book with the given id
+  editMovie: function(movieData) {
+    return axios.post("/api/watchlist", movieData);
+  },
   deleteMovie: function(id) {
     return axios.delete("/api/watchlist/" + id);
-  },
-  // Saves a book to the database
-  addMovie: function(movieData) {
-    return axios.post("/api/watchlist", movieData);
   }
 };

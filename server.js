@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '/public'));
 
 var User = require("./database/userData.js")
 
-mongoose.connect("mongodb://localhost/User");
+mongoose.connect("mongodb://<Admin>:<pass>@ds235788.mlab.com:35788/heroku_xcbthczk");
 
 function loggedIn(req, res, next) {
   if (req.user) {
@@ -90,3 +90,7 @@ require("./routes/passportRoutes.js")(app);
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 })
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+})
+

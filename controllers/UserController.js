@@ -2,13 +2,13 @@ const User = require("../database/userData.js")
 
 
 module.exports = {
-  findByUsername: function(req, res) {
-   User.findOne({
-    'username': req.body.username
-  })
-   .then(dbModel => res.json(dbModel))
-   .catch(err => res.status(422).json(err))
- },
+ findByUsername: function(req, res) {
+  User.findOne({
+   'username': req.body.username
+ })
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err))
+},
  create: function(req, res) {
   User.create(req.body)
   .then(dbModel => res.json(dbModel))
