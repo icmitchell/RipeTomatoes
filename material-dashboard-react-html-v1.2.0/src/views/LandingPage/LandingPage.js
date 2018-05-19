@@ -97,7 +97,7 @@ export default class LandingPage extends React.Component {
                 </div>
                 <div className="modal-body">
                   <div className="signup-or-separator">
-                    <span className="h6 signup-or-separator--text">or</span>
+                    <span className="h6 signup-or-separator--text">Sign in to view your Dashboard</span>
                     <br />
                   </div>
                   <form>
@@ -143,7 +143,7 @@ export default class LandingPage extends React.Component {
                 <div className="modal-footer">
                   <div className="row">
                     <div className="col-md-6">
-                      <p className="ta-l">Don't have an account ? </p>
+                      <p className="ta-l">Don't have an account? </p>
                     </div>
                     <div className="col-md-4 col-md-offset-2">
                       <button
