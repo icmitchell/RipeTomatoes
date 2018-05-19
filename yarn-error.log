@@ -1,14 +1,14 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Chetan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
 
 PATH: 
-  C:\Users\Chetan\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Chetan\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release;C:\Program Files\Hewlett-Packard\SimplePass;C:\Program Files (x86)\Notepad++;E:\Android\AndroidStudio\bin;E:\Android\sdk\platform-tools;C:\Android;C:\Windows\System32;C:\Program Files\Git\cmd;C:\Program Files\Sublime Text 3;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.6\bin;C:\Program Files\MacType;C:\Users\Chetan\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\Chetan\AppData\Local\Programs\Python\Python36-32;C:\Program Files\Java\jdk1.8.0_74\bin;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Users\Chetan\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Chetan\AppData\Roaming\npm;C:\Program Files\MySQL\MySQL Workbench 6.3 CE;C:\Users\Chetan\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Users\admin\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\admin\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\MATLAB\R2014a\bin;C:\Program Files (x86)\Common Files\Acronis\SnapAPI;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\QuickTime\QTSystem;C:\Program Files (x86)\Skype\Phone;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.6\bin;C:\Users\admin\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\admin\AppData\Local\Programs\Python\Python36-32;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\admin\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  9.7.1
+  8.11.0
 
 Platform: 
   win32 x64
@@ -20,26 +20,28 @@ npm manifest:
     "description": "",
     "main": "server.js",
     "scripts": {
-      "start": "node server.js",
+      "server": "node server.js",
+      "client": "node scripts/start-client.js",
+      "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+      "build": "node scripts/build.js",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn",
-      "heroku-postbuild": "cd material-dashboard-react-html-v1.2.0 && yarn --production=false && yarn run build"
+      "installDeps": "yarn && cd material-dashboard-react-html-v1.2.0 && yarn"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-      "concurrently": "^3.5.0",
+      "concurrently": "^3.5.1",
       "nodemon": "^1.11.0"
     },
     "dependencies": {
       "axios": "^0.16.2",
       "bcrypt": "^2.0.1",
-      "body-parser": "^1.18.3",
+      "body-parser": "^1.18.2",
       "express": "^4.16.3",
       "express-session": "^1.15.6",
       "mongod": "^2.0.0",
       "mongodb": "^3.0.8",
-      "mongoose": "^5.1.1",
+      "mongoose": "^5.1.0",
       "morgan": "^1.9.0",
       "passport": "^0.4.0",
       "passport-local": "^1.0.0",
@@ -222,7 +224,7 @@ Lockfile:
       raw-body "2.3.2"
       type-is "~1.6.15"
   
-  body-parser@^1.18.3:
+  body-parser@^1.18.2:
     version "1.18.3"
     resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.3.tgz#5b292198ffdd553b3a0f20ded0592b956955c8b4"
     dependencies:
@@ -398,7 +400,7 @@ Lockfile:
     version "0.0.1"
     resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   
-  concurrently@^3.5.0:
+  concurrently@^3.5.1:
     version "3.5.1"
     resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-3.5.1.tgz#ee8b60018bbe86b02df13e5249453c6ececd2521"
     dependencies:
@@ -1302,7 +1304,7 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   
-  mongoose@^5.1.1:
+  mongoose@^5.1.0:
     version "5.1.1"
     resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.1.1.tgz#a7e925607e76032e5ef20b3035a357bc8581b45e"
     dependencies:
@@ -2290,15 +2292,16 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 3221225786
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c node server.js
-  Directory: E:\ripetomatoes\RipeTomatoes
+  Arguments: /d /s /c concurrently "nodemon server.js" "npm run client"
+  Directory: C:\Users\admin\Desktop\Coding Bootcamp\homework\RipeTomatoes
   Output:
   
-      at ProcessTermError.MessageError (C:\Users\Chetan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Users\Chetan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Users\Chetan\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
-      at ChildProcess.emit (events.js:127:13)
-      at maybeClose (internal/child_process.js:936:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
+      at ProcessTermError.MessageError (C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Users\admin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)

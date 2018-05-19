@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios"
 import Navbar from "../Navbar/Navbar";
 import { Redirect } from "react-router-dom";
 import searchTermApi from "../../utils/searchTermApi.js"
@@ -12,6 +13,7 @@ export default class LandingPage extends React.Component {
       signupConfirm: false
     };
   };
+
   handleChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -20,27 +22,22 @@ export default class LandingPage extends React.Component {
   handleSignup = () => {
     var data = {
       email: this.state.email,
-      userName: this.state.userName,
-      password: this.state.password,
+      userame: this.state.userName,
+      password: this.state.Password,
       movie1: this.state.movie1,
       movie2: this.state.movie2,
       movie3: this.state.movie3
     };
-    fetch("/api/user/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(data)
-    })
+    axios.post("/api/user/add", data)
       .then(response => {
         if (response.status >= 400) {
           throw new Error("Bad response from server.");
         }
-        return response.json();
+        else{
+          console.log(response)
+          this.setState({"signupConfirm": true})
+        }
       })
-
       .catch(err => {
         console.log("Error: " + err);
       });
@@ -54,16 +51,13 @@ export default class LandingPage extends React.Component {
 
     // searchTermApi.login(data)
 
-    fetch("/login", {
-        "method": 'post',
-        "body": data
-    })
+    axios.post("/login", {data})
     .then(response => {
         if (response.status >= 400) {
           throw new Error("Bad response from server.");
         }
         else{
-          console.log(response)
+          console.log(response.body)
           this.setState({"loginConfirm": true})
         }
       })
@@ -73,9 +67,10 @@ export default class LandingPage extends React.Component {
   };
 
   render() {
-    if (this.state.loginConfirm) 
-        return (<Redirect to={ { pathname: '/dashboard', state: { referrer: this.state.user } } } />)
-
+    // if (this.state.loginConfirm) 
+    //     return (<Redirect to={ { pathname: '/dashboard', state: { referrer: this.state.user } } } />)
+    // if (this.state.signupConfirm) 
+    //     return (<Redirect to={ { pathname: '/dashboard', state: { referrer: this.state.user } } } />)
     return (
       <div>
         <Navbar />
@@ -120,7 +115,7 @@ export default class LandingPage extends React.Component {
                       <input
                         onChange={this.handleChange}
                         type="password"
-                        name="password"
+                        name="Password"
                         className="form-control-form "
                         id="exampleInputPasswordlog"
                         placeholder="Password"

@@ -32,21 +32,16 @@ var UserSchema = new Schema({
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
     
-    name: {
-        type: String,
-        trim: true,
-        required: "Not required"
+
+    movie1: {
+        type: String
     },
 
-    preference1: {
+    movie2: {
         type: Object
     },
 
-    preference2: {
-        type: Object
-    },
-
-    preference3: {
+    movie3: {
         type: Object
     },
     // director: [

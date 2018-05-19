@@ -19,14 +19,6 @@ app.use(
   })
 );
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -36,7 +28,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 // var User = require("./models");
-var User = require("./database/userData.js");
+
 
 app.use(
   express.static(
@@ -47,6 +39,7 @@ app.use(
 mongoose.connect(
   "mongodb://Admin:pass@ds235788.mlab.com:35788/heroku_xcbthczk"
 );
+var User = require("./database/userData.js");
 
 function loggedIn(req, res, next) {
   if (req.user) {
@@ -56,8 +49,8 @@ function loggedIn(req, res, next) {
   }
 }
 
-passport.use(
-  new LocalStrategy(function(username, password, done) {
+passport.use(new LocalStrategy(function(username, password, done) {
+    console.log(username)
     User.findOne({
       username: username
     }).then(function(user) {
@@ -75,12 +68,13 @@ passport.use(
 
 passport.serializeUser(function(user, done) {
   // Standered Serialize for session
+  console.log(user)
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
   User.findOne({
-    _id: id
+    _id: $oid.id
   }).then(function(user) {
     if (user == null) {
       done(new Error("Wrong user id."));

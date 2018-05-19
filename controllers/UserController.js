@@ -10,7 +10,14 @@ module.exports = {
   .catch(err => res.status(422).json(err))
 },
  create: function(req, res) {
-  User.create(req.body)
+  User.create({
+    'username': req.body.username,
+    'password': req.body.password,
+    'email': req.body.email,
+    'movie1': req.body.movie1,
+    'movie2': req.body.movie2,
+    'movie3': req.body.movie3,
+  })
   .then(dbModel => res.json(dbModel))
   .catch(err => res.status(422).json(err))
 },
