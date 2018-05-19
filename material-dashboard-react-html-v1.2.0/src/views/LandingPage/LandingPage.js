@@ -1,17 +1,17 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import { Redirect } from "react-router-dom";
-
+import searchTermApi from "../../utils/searchTermApi.js"
 import "../LandingPage/LandingPage.css";
 
 export default class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginConfirm: undefined,
-      signupConfirm: undefined
+      loginConfirm: false,
+      signupConfirm: false
     };
-  }
+  };
   handleChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -19,12 +19,12 @@ export default class LandingPage extends React.Component {
 
   handleSignup = () => {
     var data = {
-      firstName: this.state.firstName,
-      phNum: this.state.phNum,
       email: this.state.email,
-      password: this.state.password,
       userName: this.state.userName,
-      top5: this.state.top5
+      password: this.state.password,
+      movie1: this.state.movie1,
+      movie2: this.state.movie2,
+      movie3: this.state.movie3
     };
     fetch("/api/user/add", {
       method: "POST",
@@ -48,23 +48,24 @@ export default class LandingPage extends React.Component {
 
   handleLogin = () => {
     var data = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     };
 
-    fetch("/api/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(data)
+    // searchTermApi.login(data)
+
+    fetch("/login", {
+        "method": 'post',
+        "body": data
     })
-      .then(response => {
+    .then(response => {
         if (response.status >= 400) {
           throw new Error("Bad response from server.");
         }
-        return <Redirect to="/dashboard" />;
+        else{
+          console.log(response)
+          this.setState({"loginConfirm": true})
+        }
       })
       .catch(err => {
         console.log("Error: " + err);
@@ -72,6 +73,9 @@ export default class LandingPage extends React.Component {
   };
 
   render() {
+    if (this.state.loginConfirm) 
+        return (<Redirect to={ { pathname: '/dashboard', state: { referrer: this.state.user } } } />)
+
     return (
       <div>
         <Navbar />
@@ -105,18 +109,20 @@ export default class LandingPage extends React.Component {
                     <div className="form-group">
                       <input
                         onChange={this.handleChange}
-                        type="email"
+                        type="text"
+                        name="username"
                         className="form-control-form "
                         id="exampleInputEmaillog"
-                        placeholder="Email"
+                        placeholder="Username"
                       />
                     </div>
                     <div className="form-group">
                       <input
                         onChange={this.handleChange}
                         type="password"
+                        name="password"
                         className="form-control-form "
-                        id="exampleInputPasswordpas"
+                        id="exampleInputPasswordlog"
                         placeholder="Password"
                       />
                     </div>
@@ -132,7 +138,7 @@ export default class LandingPage extends React.Component {
                     </div>
                     <button
                       onClick={this.handleLogin}
-                      type="submit"
+                      type="button"
                       className="btn-lgin"
                     >
                       Login
@@ -192,7 +198,7 @@ export default class LandingPage extends React.Component {
                         onChange={this.handleChange}
                         type="email"
                         className="form-control-form "
-                        id="exampleInputEmaillog"
+                        id="exampleInputEmailcreate"
                         name="email"
                         placeholder="Email(required)"
                       />
@@ -211,7 +217,7 @@ export default class LandingPage extends React.Component {
                       <input
                         type="password"
                         className="form-control-form "
-                        id="exampleInputPasswordpas"
+                        id="exampleInputPasswordcreate"
                         name="password"
                         placeholder="Password(required)"
                       />
@@ -221,7 +227,7 @@ export default class LandingPage extends React.Component {
                         onChange={this.handleChange}
                         type="text"
                         className="form-control-form "
-                        id="exampleInputNamelog"
+                        id="exampleInputmovie1log"
                         name="movie1"
                         placeholder="1st Favorite Movie"
                       />
@@ -231,7 +237,7 @@ export default class LandingPage extends React.Component {
                         onChange={this.handleChange}
                         type="text"
                         className="form-control-form "
-                        id="exampleInputNamelog"
+                        id="exampleInputmovie2log"
                         name="movie2"
                         placeholder="2nd Favorite Movie"
                       />
@@ -241,7 +247,7 @@ export default class LandingPage extends React.Component {
                         onChange={this.handleChange}
                         type="text"
                         className="form-control-form "
-                        id="exampleInputNamelog"
+                        id="exampleInputmovie3log"
                         name="movie3"
                         placeholder="3rd Favorite Movie"
                       />
