@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import searchTermApi from "../../utils/searchTermApi.js"
 import "../LandingPage/LandingPage.css";
 
+import YoutubeReact from '../LandingPage/YouTubeAPI.js'
 export default class LandingPage extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +52,7 @@ export default class LandingPage extends React.Component {
 
     // searchTermApi.login(data)
 
-    axios.post("/login", {data})
+    axios.post("/login", data)
     .then(response => {
         if (response.status >= 400) {
           throw new Error("Bad response from server.");
@@ -67,10 +68,10 @@ export default class LandingPage extends React.Component {
   };
 
   render() {
-    // if (this.state.loginConfirm) 
-    //     return (<Redirect to={ { pathname: '/dashboard', state: { referrer: this.state.user } } } />)
-    // if (this.state.signupConfirm) 
-    //     return (<Redirect to={ { pathname: '/dashboard', state: { referrer: this.state.user } } } />)
+    if (this.state.loginConfirm) 
+        return (<Redirect to={ { pathname: '/dashboard'} } />)
+    if (this.state.signupConfirm) 
+        return (<Redirect to={ { pathname: '/'} } />)
     return (
       <div>
         <Navbar />
@@ -294,7 +295,7 @@ export default class LandingPage extends React.Component {
                     data-dismiss="modal"
                     aria-label="Close"
                   >
-                    <span aria-hidden="true">×</span>
+                   <span aria-hidden="true">×</span>
                   </button>
                 </div>
               </div>
@@ -304,33 +305,27 @@ export default class LandingPage extends React.Component {
         <div className="container">
           {/* Page Content */}
           {/* <!-- Jumbotron Header --> */}
-          <header className="jumbotron hero-spacer">
-            <h1
-              className="animated flip"
-              // style="text-align: center; font-family: 'Titan One', cursive; font-size: 120px;"
+          <YoutubeReact className="video"
+                ref={(player)=>{ this.player = player }}
+                videoid={this.state.videoid}
+                listType={this.state.listType} 
+                list={this.state.list}
+                height={this.state.height}
+                width={this.state.width}
+                autoplay={this.state.autoplay}
+                onEnded={this.onEnded} 
+                onPaused={this.onPaused} 
+                onPlayed={this.onPlayed} 
+                onReady={this.onReady} 
             >
+           <header className="jumbotron hero-spacer">
+            <h1 className="animated flip" >
               RIPE TOMATOES
             </h1>
-          </header>
+           </header>
+          </YoutubeReact>
 
           <hr />
-
-          {/* <!-- Title --> */}
-          <div className="row">
-            <div className="col-lg-12">
-              <h3>Latest Features</h3>
-            </div>
-          </div>
-          {/* <!-- Page Features --> */}
-          <div className="row text-center">
-            <div className="col-md-3 col-sm-6 hero-feature">
-              <div className="thumbnail">
-                <img src="http://placehold.it/800x500" alt="" />
-                <div className="caption" />
-              </div>
-            </div>
-            <hr />
-
             {/* <!-- Footer --> */}
             <footer>
               <div className="row">
@@ -341,7 +336,6 @@ export default class LandingPage extends React.Component {
             </footer>
           </div>
         </div>
-      </div>
     );
   }
 }

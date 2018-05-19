@@ -7,9 +7,7 @@ var app = express();
 module.exports = function(app) {
 
 
-	app.post('/login', passport.authenticate('local', {failureRedirect: '/'}), ()=> {
-		res.send(req)
-	})
+	app.post('/login', passport.authenticate('local', {failureRedirect: '/'}))
 
 	app.get('/logout',(req,res)=>{
 		req.logout();

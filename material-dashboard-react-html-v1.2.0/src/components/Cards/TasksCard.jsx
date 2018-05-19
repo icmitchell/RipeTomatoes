@@ -28,7 +28,7 @@ class TasksCard extends React.Component {
   render() {
     var watchList = watchListApi.getWatchList()
 
-    watchList = [{'title': 'hi'}, {'title': 'hello'}]
+    watchList = [{'title': 'Top Gun'}, {'title': 'Jurrasic Park'}, {"title": "Waterworld"}]
 
     var indexArray = []
     var movieArray = watchList.map((currentValue, index) => {
