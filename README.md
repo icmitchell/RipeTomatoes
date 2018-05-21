@@ -1,42 +1,21 @@
-# Create React Express App
+# Ripe Tomatoes
 
-## About This Boilerplate
+## Watch giphy of project
+![Ripe Tomatoes](https://infinite-wave-67208.herokuapp.com/dashboard)
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Product Concept
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+We’ve created an application that you can search for movies. We used user authentication to log in, along with a dashboard for user preferences and list capabilities. 
 
-## Starting the app locally
+## What's included
 
-Start by installing front and backend dependencies. While in this directory, run the following commands:
-
-```
-yarn install
-cd client
-yarn install
-cd ..
-``
-
-After both installations complete, run the following command in your terminal:
-
-```
-yarn start
-```
-
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-After confirming that you have an up to date git repository and a Heroku app created, complete the following:
-
-1. Build the React app for production by running the following command:
-
-```
-yarn build
-```
-
-2. Add and commit all changes to git
-
-3. Push to Heroku
-
-If all previous steps were followed correctly, your application should be deployed to Heroku!
+* Polished Frontend UL
+* HTML/CSS/Bootstrap
+* Ajax – APIs data pulling
+* MongoDB - Mongoose
+* New Technology
+* Python – surprise.io
+* JavaScript
+* Node.js & Express.js
+* Heroku – Deployment
+* React.js
